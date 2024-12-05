@@ -1,7 +1,21 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+// next.config.js
+module.exports = {
+  reactStrictMode: true,
+  images: {
+    domains: [
+      'www.theaudiodb.com'
+    ], 
+  },
+  env: {
+    API_URL: 'https://api.example.com', 
+  },
+  async redirects() {
+    return [
+      {
+        source: '/old-url', 
+        destination: '/new-url', 
+        permanent: true, 
+      },
+    ];
+  },
 };
-
-export default nextConfig;
