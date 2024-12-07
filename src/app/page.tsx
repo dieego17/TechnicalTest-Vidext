@@ -1,59 +1,47 @@
+// pages/index.tsx
 "use client";
-
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { Button } from '../components/ui/button';
-
-// Definimos el tipo de los videos/artistas
-interface Video {
-  idAlbum: string;
-  strAlbum: string;
-  strAlbumThumb: string;
-}
+import { useState, useEffect } from "react";
+import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
+import VideoList from "../components/VideoList/VideoList";
+import useVideos from "../hook/useVideos";
+import { Video } from "./types/types";
 
 export default function Home() {
-  const [videos, setVideos] = useState<Video[]>([]); // Especificamos el tipo del estado
-
-  const API_URL = `https://www.theaudiodb.com/api/v1/json/2/album.php?i=112024`;
+  const { videos, loading, error } = useVideos(); // Usamos el custom hook
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   useEffect(() => {
-    // Llamada a la API de TheAudioDB
-    const fetchVideos = async () => {
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      if (data.album) {
-        setVideos(data.album);
-      }
-    };
-
-    fetchVideos();
-  }, []);
+    // Si hay videos, seleccionamos el primero por defecto
+    if (videos.length > 0) {
+      setSelectedVideo(videos[0]);
+    }
+  }, [videos]); // Este useEffect se ejecutará cuando los videos cambien
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <header className="p-4 text-center text-2xl font-bold">Video Player</header>
-      <main className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {videos.map((video) => (
-          <div
-            key={video.idAlbum}
-            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:scale-105 transition"
-          >
-            <Image
-              src={video.strAlbumThumb} // Usamos la miniatura del álbum
-              alt={video.strAlbum}
-              width={640}
-              height={360}
-              className="w-full h-48 object-cover"
+      <header className="p-4 text-center text-2xl font-bold">Music Video Player</header>
+      <div className="p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Video Principal */}
+        <div className="col-span-2 flex justify-center items-center">
+          {loading ? (
+            <p className="text-center">Loading...</p>
+          ) : error ? (
+            <p className="text-center text-red-500">{error}</p>
+          ) : selectedVideo ? (
+            <VideoPlayer
+              videoId={selectedVideo.id.videoId}
+              title={selectedVideo.snippet.title}
             />
-            <div className="p-4">
-              <h2 className="text-lg font-semibold">{video.strAlbum}</h2>
-              <Button className="mt-2 w-full bg-red-600 text-white py-2 rounded">
-                Watch Now
-              </Button>
-            </div>
-          </div>
-        ))}
-      </main>
+          ) : (
+            <p className="text-center">No video selected</p>
+          )}
+        </div>
+
+        {/* Selector de Videos con Scroll */}
+        <div className="col-span-1">
+          <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
+        </div>
+      </div>
     </div>
   );
 }

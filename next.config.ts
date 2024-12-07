@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: [
-      'www.theaudiodb.com'
+      'i.ytimg.com'
     ], 
   },
   env: {
