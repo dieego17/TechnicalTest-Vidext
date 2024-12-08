@@ -3,7 +3,9 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: [
-      'i.ytimg.com'
+      'example.com',
+      'filesamples.com',
+      'videos.pexels.com'
     ], 
   },
   env: {
