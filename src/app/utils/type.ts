@@ -4,5 +4,6 @@ export type Video = {
     url: string;
     views: number;
     likes: number;
+    userLiked: boolean;
   };
   

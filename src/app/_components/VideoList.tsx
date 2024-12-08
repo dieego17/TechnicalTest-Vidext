@@ -23,7 +23,7 @@ export default function VideoList({ videos, currentVideo, onVideoSelect }: Video
             onClick={() => onVideoSelect(video)}
           >
             <Image
-              src={video.url}
+              src='/play.png'
               alt={video.name}
               className="w-16 h-16 rounded-md mr-4"
               width={64}

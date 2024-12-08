@@ -18,7 +18,7 @@ export default function TodoVideo() {
     return <div className="text-center text-red-500">Error al cargar los videos</div>;
   }
 
-  const videos = getAllVideos.data?.[0] || [];
+  const videos = getAllVideos.data || [];  
   const defaultVideo = videos[0]; 
   const videoToDisplay = currentVideo || defaultVideo;
 
