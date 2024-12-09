@@ -4,6 +4,9 @@ import { httpBatchLink } from "@trpc/client";
 import React, { useState } from "react";
 import { trpc } from "./clients";
 
+/*
+    EEste Provider es un componente que envuelve a la aplicación y provee de un cliente de trpc y un cliente de react-query.
+*/
 export default function Provider({ children }: { children: React.ReactNode }) {
     const [queryClient] = useState(() => new QueryClient());
     const [trpcClient] = useState(() =>

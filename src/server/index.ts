@@ -2,6 +2,9 @@ import { publicProcedure, router } from "./trpc";
 import Videos from './data/videos.json'
 import { z } from 'zod';
 
+/*
+    Estas funciones son las que se exportan para ser utilizadas en el cliente. Y hacer las peticiones a la API.
+*/
 export const appRouter = router({
     getAllVideos: publicProcedure.query(async () => {
         return Videos

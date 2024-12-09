@@ -7,6 +7,9 @@ interface VideoListProps {
   onVideoSelect: (video: Video) => void;
 }
 
+/*
+  Este componente se encarga de mostrar una lista de videos sugeridos
+*/
 export default function VideoList({ videos, currentVideo, onVideoSelect }: VideoListProps) {
   return (
     <div className="bg-gray-100 overflow-y-auto border-l border-gray-300 p-4 h-full">

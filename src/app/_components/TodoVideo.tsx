@@ -6,6 +6,9 @@ import { Video } from "../utils/type";
 import VideoPlayer from "./VideoPlayer";
 import VideoList from "./VideoList";
 
+/*
+  Este componente se encarga de mostrar un video y sus detalles
+*/
 export default function TodoVideo() {
   const getAllVideos = trpc.getAllVideos.useQuery();
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null); 
