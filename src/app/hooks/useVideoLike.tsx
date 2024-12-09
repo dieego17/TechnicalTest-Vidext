@@ -3,7 +3,7 @@ import { trpc } from "../_trpc/clients";
 import { Video } from "../utils/type";
 
 /* 
-    Este hook se encarga de incrementar o decrementar los likes de un video
+  Este hook se encarga de incrementar o decrementar los likes de un video
 */
 export function useVideoLike(video: Video) {
   const [hasLiked, setHasLiked] = useState(video.userLiked);
