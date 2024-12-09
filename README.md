@@ -1,6 +1,13 @@
 # TechnicalTest-Vidext
 
-Este es un proyecto de **prueba técnica** desarrollado con [Next.js](https://nextjs.org) utilizando [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). El proyecto está construido con **Next.js**, **TypeScript**, **tRPC** para la API, y **Tailwind CSS** para los estilos.
+Este es un proyecto de **prueba técnica** desarrollado con [Next.js](https://nextjs.org) utilizando [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). El proyecto está diseñado para mostrar videos con funcionalidades de incremento/decremento de likes y vistas.
+
+## Características
+
+- Visualización de videos.
+- Incremento y decremento de likes en los videos.
+- Incremento de vistas en los videos.
+- API RESTful para manejar las operaciones de los videos.
 
 ## Tecnologías utilizadas
 
@@ -111,7 +118,7 @@ La API de este proyecto tiene los siguientes puntos finales:
 
 ### Respuesta de la API
 
-Las respuestas de la API son objetos JSON que contienen el video actualizado con la cantidad de **likes** o **vistas** modificada. En caso de error (por ejemplo, si no se encuentra un video con el `id` proporcionado), la API responderá con un mensaje de error.
+Las respuestas de la API son objetos JSON que contienen el video actualizado con la cantidad de **likes** o **vistas** modificada. En caso de error (por ejemplo, si no se encuentra un video con el `id` especificado), se retorna un mensaje de error adecuado.
 
 Ejemplo de respuesta exitosa:
 ```json
@@ -125,9 +132,25 @@ Ejemplo de respuesta exitosa:
 
 ## Despliegue en Vercel
 
-La forma más fácil de desplegar tu aplicación Next.js es utilizando la [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+La forma más fácil de desplegar tu aplicación Next.js es utilizando la [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app). Consulta la [documentación de despliegue de Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para más detalles.
 
-Consulta la [documentación de despliegue de Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para más detalles.
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, sigue los siguientes pasos para contribuir:
+
+1. Haz un fork del proyecto.
+2. Crea una nueva rama (git checkout -b feature/nueva-caracteristica).
+3. Realiza tus cambios y haz commit (git commit -m 'Agregar nueva característica').
+4. Sube tu rama (git push origin feature/nueva-caracteristica).
+5. Abre un Pull Request.
+
+## Capturas de pantalla
+
+### Interfaz de Visualización de Videos
+![image](https://github.com/user-attachments/assets/cc134472-1a33-4077-89d6-ee64fb00961f)
+
+### Funcionalidad de Incremento de Likes
+![image](https://github.com/user-attachments/assets/7e8354a0-8ed2-4dbf-b831-a75d64b12718)
 
 ## Licencia
 
