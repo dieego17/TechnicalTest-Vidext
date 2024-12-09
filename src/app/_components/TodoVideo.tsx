@@ -1,32 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { trpc } from "../_trpc/clients";  
-import { Video } from "../utils/type";   
-import VideoPlayer from "./VideoPlayer";  
-import VideoList from "./VideoList"; 
+import  VideoPlayer  from "./VideoPlayer";
+import  VideoList  from "./VideoList";
+import { useVideos } from "../hooks/useVideos";
+import { useSelectedVideo } from "../hooks/useSelectedVideo";  
 
 /*
   Este componente muestra un video seleccionado y una lista de videos.
 */
 export default function TodoVideo() {
-  // Consulta los videos desde la API
-  const getAllVideos = trpc.getAllVideos.useQuery();
-  
-  // Estado para manejar el video actualmente seleccionado
-  const [currentVideo, setCurrentVideo] = useState<Video | null>(null); 
+  // Obtención de videos desde la API
+  const { videos, isLoading, isError } = useVideos();
 
+  // Lógica para manejar la selección de video
+  const { currentVideo, selectVideo } = useSelectedVideo();
+  
   // Si los datos están cargando, muestra un mensaje
-  if (getAllVideos.isLoading) {
+  if (isLoading) {
     return <div className="text-center text-gray-500">Cargando...</div>;
   }
 
   // Si ocurre un error, muestra un mensaje de error
-  if (getAllVideos.isError) {
+  if (isError) {
     return <div className="text-center text-red-500">Error al cargar los videos</div>;
   }
 
-  const videos = getAllVideos.data || [];  // Obtiene los videos o usa un array vacío
   const defaultVideo = videos[0];  // Primer video como predeterminado
   const videoToDisplay = currentVideo || defaultVideo;  // Muestra el video seleccionado o el predeterminado
 
@@ -38,7 +36,7 @@ export default function TodoVideo() {
         <VideoList
           videos={videos}  // Pasa los videos a la lista
           currentVideo={videoToDisplay}  // Resalta el video actualmente seleccionado
-          onVideoSelect={setCurrentVideo}  // Permite seleccionar un nuevo video
+          onVideoSelect={selectVideo}  // Permite seleccionar un nuevo video
         />
       </div>
     </div>
