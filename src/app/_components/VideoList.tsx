@@ -1,14 +1,14 @@
-import { Video } from '../utils/type';
-import Image from 'next/image';
+import { Video } from '../utils/type';  
+import Image from 'next/image';  
 
 interface VideoListProps {
-  videos: Video[];
-  currentVideo: Video;
-  onVideoSelect: (video: Video) => void;
+  videos: Video[];  // Array de videos a mostrar
+  currentVideo: Video;  // Video que se está reproduciendo actualmente
+  onVideoSelect: (video: Video) => void;  // Función para seleccionar un video
 }
 
 /*
-  Este componente se encarga de mostrar una lista de videos sugeridos
+  Este componente se encarga de mostrar una lista de videos sugeridos.
 */
 export default function VideoList({ videos, currentVideo, onVideoSelect }: VideoListProps) {
   return (
@@ -17,13 +17,14 @@ export default function VideoList({ videos, currentVideo, onVideoSelect }: Video
         Videos sugeridos
       </h2>
       <ul className="space-y-6">
+        {/* Mapeo de la lista de videos */}
         {videos.map(video => (
           <li
             key={video.id}
             className={`flex items-center p-4 rounded-xl cursor-pointer hover:bg-gray-700 transition-all duration-200 ${
               video.id === currentVideo.id ? 'bg-gray-600' : ''
             }`}
-            onClick={() => onVideoSelect(video)}
+            onClick={() => onVideoSelect(video)}  // Selección del video al hacer clic
           >
             <Image
               src='/play.png'
